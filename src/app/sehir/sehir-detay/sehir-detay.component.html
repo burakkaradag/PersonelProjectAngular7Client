@@ -1,0 +1,46 @@
+<form [formGroup]="sehirForm">
+  <div class="formGroup">
+    <label class="form-control">Sehir Id</label>
+    <input
+      class="form-control"
+      type="text"
+      formControlName="id"
+    
+      value="{{ secSehir.sehirId }}"
+      [(ngModel)]="secSehir.sehirId"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label class="form-control">Sehir Ad</label>
+    <input
+      [ngClass]="{
+        'is-invalid':
+          sehirForm.get('sehirAd').errors && sehirForm.get('sehirAd').touched
+      }"
+      type="text"
+      class="form-control"
+      formControlName="sehirAd"
+      value="{{ secSehir.sehirAd }}"
+      [(ngModel)]="secSehir.sehirAd"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        sehirForm.get('sehirAd').hasError('required') &&
+        sehirForm.get('sehirAd').touched
+      "
+    >
+      sehir ad max 20 min 3 karakter
+    </div>
+    
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+<button [disabled]="sehirForm.invalid" type="button" class="btn btn-success" (click)='updateSehir(secSehir)'>Update</button>
+<button  type="button" class="btn btn-danger" (click)='deleteSehir(secSehir.sehirId)'>Delete</button>
+<button [disabled]="sehirForm.invalid" type="button" class="btn btn-warning" (click)='createSehir(secSehir)' >Create</button>
+  </div>
+
+</form>
+{{msg}}

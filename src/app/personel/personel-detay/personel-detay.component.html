@@ -1,0 +1,60 @@
+<form [formGroup]="personelForm">
+  <div class="formGroup">
+    <label class="form-control">Personel Id</label>
+    <input
+      class="form-control"
+      type="text"
+      formControlName="id"
+      value="{{ secpersonel.personelId }}"
+      [(ngModel)]="secpersonel.personelId"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label class="form-control">Personel Ad</label>
+    <input
+      [ngClass]="{
+        'is-invalid':
+          personelForm.get('personelAd').errors &&
+          personelForm.get('personelAd').touched
+      }"
+      type="text"
+      class="form-control"
+      formControlName="personelAd"
+      value="{{ secpersonel.personelAd }}"
+      [(ngModel)]="secpersonel.personelAd"
+    />
+  </div>
+  <div class="formGroup">
+    <label class="form-control">Personel Soyad</label>
+    <input
+      class="form-control"
+      type="text"
+      formControlName="personelSoyad"
+      value="{{ secpersonel.personelSoyad }}"
+      [(ngModel)]="secpersonel.personelSoyad"
+    />
+  </div>
+
+  <label>Sehir DropDown</label>
+  <form>
+    <select required name="Country"  
+        #refCountry="ngModel"  
+        class="form-control" [(ngModel)]="secpersonel.sehirId">  
+    <!-- <option value="">sehir seciniz</option>   -->
+    <option *ngFor="let item of slist"  
+            [ngValue]="item.sehirId"
+            >
+        {{item.sehirAd}}  
+    </option>  
+</select>  
+
+
+  </form>
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button [disabled]="personelForm.invalid" type="button" class="btn btn-success" (click)="updatePersonel(secpersonel)" >Update</button>
+    <button  type="button" class="btn btn-danger" (click)="deletePersonel(secpersonel.personelId)">Delete</button>
+    <button [disabled]="personelForm.invalid" type="button" class="btn btn-warning" (click)="createPersonel(secpersonel)" >Create</button>
+      </div>
+</form>

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="col-md-12" *ngIf="detay == false">
+        <h3>Sehir List</h3>
+        <table class="table table-hover table table-bordered  ">
+          <thead>
+            <tr>
+              <th>Sehir Id</th>
+              <th>Sehir Ad</th>
+              <th>Resim</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of slist" (mouseover)="selectSehir(item)" >
+              <td>{{ item.sehirId }}</td>
+              <td>
+                {{ item.sehirAd }}
+              </td>
+              <td><img src="/{{ item.resimYol }}" alt=" " /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  <div class="row" *ngIf="detay == true" (mouseleave)="mouseleft()">
+    <div class="col-md-7" >
+      <h3>Sehir List</h3>
+      <table class="table table-hover table table-bordered  ">
+        <thead>
+          <tr>
+            <th>Sehir Id</th>
+            <th>Sehir Ad</th>
+            <th>Resim</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of slist" (mouseover)="selectSehir(item)">
+            <td>{{ item.sehirId }}</td>
+            <td>
+              {{ item.sehirAd }}
+            </td>
+            <td><img src="/{{ item.resimYol }}" alt=" " /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <h3>Sehir Detay</h3>
+      <app-sehir-detay [secSehir]="secSehir"> </app-sehir-detay>
+      
+    </div>
+  </div>
+</div>
